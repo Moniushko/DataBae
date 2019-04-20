@@ -1,1 +1,40 @@
 ---
+image: ubuntu
+stages:
+  - testing
+  - production
+
+test_laravel_server:
+  stage: testing
+  variables:
+    DEBIAN_FRONTEND: noninteractive
+    APP_ENV: development
+    DB_CONNECTION: sqlite
+  before_script:
+    - apt update
+    - apt install php7.2-common php7.2-cli php7.2-gd php7.2-mysql php7.2-sqlite3 php7.2-curl php7.2-intl php7.2-mbstring php7.2-bcmath php7.2-imap php7.2-xml php7.2-zip curl -y
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    - composer install
+    - php artisan storage:link
+    - rm .env.example
+    - touch .env && echo "APP_KEY=" >> .env
+    - touch database/database.sqlite
+    - php artisan key:generate
+    - php artisan migrate
+  script:
+    - php artisan serve --host 0.0.0.0 &
+
+# deploy:
+#   stage: production
+#   before_script: 
+#     - apk add --no-cache --update openssh
+#     - mkdir -p ~/.ssh
+#     - echo -e "$SSH_PRIV_KEY" > ~/.ssh/id_rsa   
+#     - chmod 600 ~/.ssh/id_rsa
+#     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+#   script:
+#     # /etc/bash.bashrc
+#     #If not running interactively, don't do anything (COMMENT OUT BELOW LINE)
+#     #[ -z "$PS1" ] && return
+#     - ssh ubuntu@nfigueroa.dev 'PATH=/home/ubuntu/.rvm/gems/ruby-2.5.3/bin:/home/ubuntu/.rvm/gems/ruby-2.5.3@global/bin:/usr/share/rvm/rubies/ruby-2.5.3/bin:/usr/share/rvm/bin:/home/ubuntu/.rvm/gems/ruby-2.5.3/bin:/home/ubuntu/.rvm/gems/ruby-2.5.3@global/bin:/home/ubuntu/.rvm/gems/ruby-2.5.3/bin:/home/ubuntu/.rvm/gems/ruby-2.5.3@global/bin:/home/ubuntu/.rvm/gems/ruby-2.5.3/bin:/home/ubuntu/.rvm/gems/ruby-2.5.3@global/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin; echo $PATH; gem list; which bundle; which bundler; which ruby; cd blog/; bash script.sh'
+#     - echo "success!!"
