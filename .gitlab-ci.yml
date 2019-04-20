@@ -2,7 +2,7 @@
 image: ubuntu
 stages:
   - testing
-  - production
+  # - production
 
 test_laravel_server:
   stage: testing
@@ -23,6 +23,8 @@ test_laravel_server:
     - php artisan migrate
   script:
     - php artisan serve --host 0.0.0.0 &
+  only:
+    - master
 
 # deploy:
 #   stage: production
