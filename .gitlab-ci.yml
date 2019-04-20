@@ -6,6 +6,8 @@ stages:
 
 test_laravel_server:
   stage: testing
+  only:
+    - master
   variables:
     DEBIAN_FRONTEND: noninteractive
     APP_ENV: development
@@ -25,12 +27,13 @@ test_laravel_server:
     - php artisan migrate
   script:
     - php artisan serve --host 0.0.0.0 &
-  only:
-    - master
 
 deploy:
   stage: production
+  only:
+    - master
   before_script: 
+    - apt update
     - apt install openssh-client -y
     - mkdir -p ~/.ssh
     - echo -e "$DATABAE_PRIV_KEY" > ~/.ssh/id_rsa   
@@ -39,5 +42,3 @@ deploy:
   script:
     - ssh ubuntu@databaerecipes.com 'cd /var/www/laravel/DataBae; git pull'
     - echo "success!!"
-  only:
-    - master
