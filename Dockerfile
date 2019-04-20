@@ -13,7 +13,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN mkdir /recipes_app
 WORKDIR /recipes_app
 COPY ./Backend .
-# RUN chmod -R 777 storage && chmod -R 777 bootstrap/cache
 RUN composer install
 # link custom storage directories
 RUN php artisan storage:link
