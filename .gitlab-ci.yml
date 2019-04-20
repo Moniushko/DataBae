@@ -2,7 +2,7 @@
 image: ubuntu
 stages:
   - testing
-  # - production
+  - production
 
 test_laravel_server:
   stage: testing
@@ -28,17 +28,14 @@ test_laravel_server:
   only:
     - master
 
-# deploy:
-#   stage: production
-#   before_script: 
-#     - apk add --no-cache --update openssh
-#     - mkdir -p ~/.ssh
-#     - echo -e "$SSH_PRIV_KEY" > ~/.ssh/id_rsa   
-#     - chmod 600 ~/.ssh/id_rsa
-#     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-#   script:
-#     # /etc/bash.bashrc
-#     #If not running interactively, don't do anything (COMMENT OUT BELOW LINE)
-#     #[ -z "$PS1" ] && return
-#     - ssh ubuntu@nfigueroa.dev 'PATH=/home/ubuntu/.rvm/gems/ruby-2.5.3/bin:/home/ubuntu/.rvm/gems/ruby-2.5.3@global/bin:/usr/share/rvm/rubies/ruby-2.5.3/bin:/usr/share/rvm/bin:/home/ubuntu/.rvm/gems/ruby-2.5.3/bin:/home/ubuntu/.rvm/gems/ruby-2.5.3@global/bin:/home/ubuntu/.rvm/gems/ruby-2.5.3/bin:/home/ubuntu/.rvm/gems/ruby-2.5.3@global/bin:/home/ubuntu/.rvm/gems/ruby-2.5.3/bin:/home/ubuntu/.rvm/gems/ruby-2.5.3@global/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin; echo $PATH; gem list; which bundle; which bundler; which ruby; cd blog/; bash script.sh'
-#     - echo "success!!"
+deploy:
+  stage: production
+  before_script: 
+    - apk add --no-cache --update openssh
+    - mkdir -p ~/.ssh
+    - echo -e "$DATABAE_PRIV_KEY" > ~/.ssh/id_rsa   
+    - chmod 600 ~/.ssh/id_rsa
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ssh ubuntu@databaerecipes.com 'cd /var/www/laravel/DataBae; git pull'
+    - echo "success!!"
