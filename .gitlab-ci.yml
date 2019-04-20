@@ -40,5 +40,5 @@ deploy:
     - chmod 600 ~/.ssh/id_rsa
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - ssh ubuntu@databaerecipes.com 'cd /var/www/laravel/DataBae; git pull'
+    - ssh ubuntu@databaerecipes.com 'cd /var/www/laravel/DataBae; sudo git pull'
     - echo "success!!"
