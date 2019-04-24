@@ -93,9 +93,14 @@
         {{ method_field('DELETE') }}
         {{ csrf_field() }}
         <div class="col-lg-12 col-md-12 col-6 list-unstyled d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-secondary">Delete Recipe</button>
-									</div>
+									<button type="submit" class="btn btn-secondary mr-3">Delete Recipe</button>
 									</form>
+									
+									<form class="" action="{{ $recipe->path() }}/edit" method="GET">
+									<button type="submit" class="btn btn-secondary mr-3">Edit Recipe</button>
+									</form>
+									
+									</div>
 		<script>
 			$(".delete").on("submit", function(){
 			return confirm("Are you sure?");

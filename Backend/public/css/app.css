@@ -9846,3 +9846,15 @@ a.text-dark:hover {
    height: 679px;
   object-fit: fill;
 }
+.gallery
+    {
+        display: inline-block;
+        margin-top: 20px;
+    }
+.close-icon{
+    	border-radius: 50%;
+        position: absolute;
+        right: 5px;
+        top: -10px;
+        padding: 5px 8px;
+    }

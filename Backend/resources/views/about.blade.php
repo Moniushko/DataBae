@@ -14,7 +14,7 @@
 			<img class="card-img-top" width="369px" height="247px" src="/img/Sol.jpg" alt="Sol Crystal">
 			<div class="card-body">
 				<h5 class="card-title">Sol Crystal</h5>
-				<p class="card-text">Dev Ops</p>
+				<p class="card-text">Dev Ops/Web Developer/System Designer</p>
 			</div>
 		</div>
 		<div class="card-group mb-4">

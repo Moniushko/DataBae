@@ -26,6 +26,9 @@ Route::post('uploadrecipes', 'RecipesController@store');
 Route::get('/recipes/categories', 'RecipesController@categories');
 Route::get('/recipes/categories/{category}', 'RecipesController@categoryshow');
 Route::get('/recipes/{recipe}', 'RecipesController@show');
+Route::get('/recipes/{recipe}/edit', 'RecipesController@edit');
+Route::post('/recipes/{recipe}/edit', 'RecipesController@update');
+Route::delete('/edit/galleries/{id}', 'GalleriesController@destroy');
 Route::delete('recipes/{recipe}', 'RecipesController@destroy');
 Route::post('/recipes/{recipe}/replies', 'RepliesController@store');
 Route::post('/recipes/{recipe}/ratings', 'RatingController@store');
@@ -35,8 +38,6 @@ Route::get('/contact', 'PagesController@contact');
 Route::get('/about', 'PagesController@about');
 Route::get('/support', 'PagesController@support');
 Route::post('/support', 'PagesController@sendRequest');
-Route::get('contact-us', 'ContactUSController@contactUS');
-Route::post('contact-us', ['as'=>'contactus.store','uses'=>'ContactUSController@contactUSPost']);
 
 Auth::routes(['verify' => true]);
 
