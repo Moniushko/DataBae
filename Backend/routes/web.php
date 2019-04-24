@@ -39,7 +39,8 @@ Route::get('/about', 'PagesController@about');
 Route::get('/support', 'PagesController@support');
 Route::post('/support', 'PagesController@sendRequest');
 
-Auth::routes(['verify' => true]);
+// temporary disable email verification for QA
+Auth::routes();//Auth::routes(['verify' => true]);
 
 //Route::get('home', 'HomeController@index')->name('home');
 
