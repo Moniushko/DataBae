@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light border shadow">
 		<a class="navbar-brand" href="/home">
-			<img src="/public/img/Databae_Logo-01.png">
+			<img src="/img/Databae_Logo-01.png">
 	</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
