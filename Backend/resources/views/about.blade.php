@@ -16,7 +16,7 @@
     <!-- Grid column -->
     <div class="col-xl-6 col-lg-12 mb-5 d-md-flex justify-content-between">
       <div class="avatar mb-md-0 mb-4 mx-4">
-        <img src="/img/Jeff.jpg" class="rounded z-depth-1" object-fit: cover alt="Sample avatar">
+        <img src="/img/Jeff.jpg" class="rounded z-depth-1" style="object-fit: cover" height="75px" alt="Sample avatar">
       </div>
       <div class="mx-4">
 		<h4 class="font-weight-bold mb-3">Jeffery Garcia</h4>
