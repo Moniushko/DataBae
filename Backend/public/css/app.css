@@ -9858,3 +9858,132 @@ a.text-dark:hover {
         top: -10px;
         padding: 5px 8px;
     }
+.carousel-multi-item-2 .col-md-3 {
+float: left;
+max-height: 200px;
+width: auto;
+object-fit: cover;
+}
+.carousel-multi-item-2 .card img {
+border-radius: 2px; 
+}
+section .avatar img {
+	max-width: 200px;
+	height: auto;
+}
+.notificationIcon:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: .75;
+}
+.notification-icon messages:before {
+background: url(/img/close-envelope.svg) 50% 50% no-repeat;
+}
+.notificationIcon {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.notificationIcon__badge {
+    z-index: 1;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    top: 12px;
+    right: 11px;
+}
+.sc-ir {
+    border: 0;
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+    background-color: transparent;
+}
+.header__userNavMessagesButton {
+    border-right: 0;
+    border-radius: 0 2px 2px 0;
+}
+.header__userNavActivitiesButton, .header__userNavMessagesButton {
+    width: 46px;
+}
+.header__userNavButton {
+    height: 46px;
+    box-sizing: border-box;
+}
+.header__userNavItem {
+    float: left;
+}
+.counter {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    position: absolute;
+    z-index: 2;
+    margin-top: 0;
+    margin-left: -23px;
+    -webkit-border-radius: 10em;
+    border-radius: 10em;
+    padding: 1px 7px;
+    background-color: #fe1212;
+    font-size: 11px;
+    color: #fff;
+    left: auto;
+}
+.btn-email {
+    background-color: #4b515d!important;
+    color: #fff;
+}
+.fa, .fab, .fal, .far, .fas {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.toast-header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: .25rem .75rem;
+    color: #6c757d;
+    background-color: rgba(255,255,255,.85);
+    background-clip: padding-box;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.toast.show {
+    display: block;
+    opacity: 1;
+}
+.toast-body {
+    padding: .75rem;
+}
+.toast {
+    max-width: 350px;
+	width: 350px;
+    overflow: hidden;
+    font-size: .875rem;
+    background-color: rgba(255,255,255,.85);
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.1);
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    border-radius: .25rem;
+}

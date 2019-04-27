@@ -62,6 +62,39 @@
             </div>
 			@endforeach
           </div>
+		  <div class="col-md-4 mt-5">
+            <h4 class="text-center border rounded-0 border-light shadow-lg mb-5">Top Dessert</h4>
+			  @forEach($topDesserts as $topDessert)
+            <div class="card"> <img class="card-img-top" src="/storage/recipes/{{ $topDessert->picture }}" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">{{ $topDessert->title }}</h4>
+                <p class="card-text">{{ $topDessert->description }}</p> <a href="{{ $topDessert->path() }}" class="btn btn-primary">Read recipe</a>
+              </div>
+            </div>
+			@endforeach
+          </div>
+		  <div class="col-md-4 mt-5">
+            <h4 class="text-center border rounded-0 border-light shadow-lg mb-5">Top Snack</h4>
+			  @forEach($topSnacks as $topSnack)
+            <div class="card"> <img class="card-img-top" src="/storage/recipes/{{ $topSnack->picture }}" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">{{ $topSnack->title }}</h4>
+                <p class="card-text">{{ $topSnack->description }}</p> <a href="{{ $topSnack->path() }}" class="btn btn-primary">Read recipe</a>
+              </div>
+            </div>
+			@endforeach
+          </div>
+		  <div class="col-md-4 mt-5">
+            <h4 class="text-center border rounded-0 border-light shadow-lg mb-5">Top Drink</h4>
+			  @forEach($topDrinks as $topDrink)
+            <div class="card"> <img class="card-img-top" src="/storage/recipes/{{ $topDrink->picture }}" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">{{ $topDrink->title }}</h4>
+                <p class="card-text">{{ $topDrink->description }}</p> <a href="{{ $topDrink->path() }}" class="btn btn-primary">Read recipe</a>
+              </div>
+            </div>
+			@endforeach
+          </div>
         </div>
       </div>
     </div>

@@ -19,10 +19,82 @@
     <div class="container">
       <div class="row">
         <div class="px-lg-5 d-flex flex-column justify-content-center col-lg-6">
+			 <div class="row">
+						@if ($message = Session::get('success'))
+
+						<div class="alert alert-success alert-block">
+
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+
+							<strong>{{ $message }}</strong>
+
+						</div>
+
+						@endif
+						
+						@if ($message = Session::get('fail'))
+
+						<div class="alert alert-danger alert-block">
+
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+
+							<strong>{{ $message }}</strong>
+
+						</div>
+
+						@endif
+						@if (count($errors) > 0)
+						<div class="alert alert-danger">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							
+							<strong>Whoops!</strong> There were some problems with sending your message:<br><br>
+							<ul>
+								@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+								@endforeach
+							</ul>
+						</div>
+						@endif
+					</div>
           <h1>{{ $user->username }}</h1>
           <p class="mb-3 lead">{{ $user->first_name }} {{ $user->last_name }}<br><br>Total amount of rating recipes:<b> {{ $user->totalRatings() }} </b><br><br>Average Ratings:<b> {{ $user->totalAverageRatings() }} out of 5 stars </b></p>
         </div>
-        <div class="col-lg-6"> <img class="img-fluid d-block" width="50%" height="75%" src="/storage/avatars/{{ $user->avatar }}">@if (auth()->check() && $user->id != auth()->user()->id)<a class="btn btn-secondary mt-3" href="#">Message</a>@endif
+		<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+	  <form class="form-horizontal" method="POST" enctype="multipart/form-data">
+		{{ csrf_field() }}
+    <div class="modal-content">
+      <div class="modal-header text-center">
+		<h4 class="modal-title w-100 font-weight-bold">Write to {{ $user->username }}</h4>
+		<input type="hidden" id="userid" name="userid" value="{{ $user->id }}" class="form-control validate">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-2">
+          <i class="fas fa-tag prefix grey-text"></i>
+          <input type="text" id="subject" name="subject" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="form32">Subject</label>
+        </div>
+
+        <div class="md-form">
+          <i class="fas fa-pencil prefix grey-text"></i>
+          <textarea type="text" id="message" name="message" class="md-textarea form-control" rows="4"></textarea>
+          <label data-error="wrong" data-success="right" for="form8">Your message</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-primary">Send<i class="fas fa-paper-plane-o ml-1"></i></button>
+      </div>
+	  </form>
+    </div>
+  </div>
+</div>
+
+		<div class="col-lg-6"> <img class="img-fluid d-block" width="50%" height="75%" src="/storage/avatars/{{ $user->avatar }}">@if (auth()->check() && $user->id != auth()->user()->id)<a class="btn btn-secondary mt-3" href="#" data-toggle="modal" data-target="#modalContactForm">Message</a>@endif
 	</div>
       </div>
     </div>

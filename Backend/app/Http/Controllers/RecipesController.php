@@ -330,7 +330,8 @@ class RecipesController extends Controller
          return view('recipes.show', [
             'recipe' => $recipe,
             'replies' => $recipe->replies()->paginate(20),
-			'galleries' => $gallery
+			'galleries' => $gallery,
+			'topReply' => $recipe->topReply(),
         ]);
     }
 
@@ -430,20 +431,7 @@ class RecipesController extends Controller
 				$form->recipe_id = $recipe->id;
 				$form->filename=$data;
 				$form->save();
-			}
-
-		// delete the old gallery photos
-		$galleries = Gallery::disableCache()->where('recipe_id', $recipe->id);
-		foreach (glob("/storage/gallery/'.$recipe->id.'/'*") as $filename) {
-			if(!Gallery::where([
-			['recipe_id', '=', $recipe->id],
-			['filename', '=', $filename]
-			])->exists()) {
-				if(\File::exists($filename)) 
-					unlink($filename);
-			}
-		}
-		
+			}	
 	}
 		
 		$recipe->save();

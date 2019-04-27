@@ -1,13 +1,12 @@
 
   <div class="card-fluid mt-3">
     <div class="card-header d-flex justify-content-between">
-      <a href="/user/{{ $reply->owner->id }}">{{ '@' }}{{
-      $reply->owner->username }}</a><small text="muted">{{
+      <a href="/user/{{ $reply->owner->id }}" style="text-decoration: inherit;z-index: 1;"><img class="rounded-circle" width="34px" height="34px" style="margins: auto; margin-right: 10px;" src="/storage/avatars/{{ $reply->owner->avatar }}">{{ '@' }}{{
+      $reply->owner->username }}</img></a><small text="muted">{{
       $reply->updated_at->diffForHumans() }}</small>
     </div>
 
     <div class="card-body">
-      <h4>Reply Title</h4>
 
       <p class="text-justify">{{ $reply->body }}</p>
 

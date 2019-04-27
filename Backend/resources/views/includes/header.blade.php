@@ -45,6 +45,29 @@
 			</div>
 			@else
 			<a href="/uploadrecipes" class="btn btn-secondary navbar-btn login-btn mt-1" style="margin-right: 50px;height: 50%;">Upload a Recipe</a>
+			<div class="dropdown dropleft">
+			<a href="#" style="text-decoration: none;" class="header__userNavItem header__userNavButton header__userNavMessagesButton" tabindex="0" data-toggle="dropdown" aria-haspopup="true" role="button" aria-owns="dropdown-button-48">
+         <button type="button" class="btn btn-email waves-effect waves-light">
+      <i class="fas fa-envelope"></i>
+    </button>
+	<span class="counter">10</span>
+        </a>
+		<div class="dropdown-menu">
+    <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+      <div class="toast-header">
+		<img class=" rounded ml-2 mr-2" width="20" height="20" src="/storage/avatars/{{ Auth::user()->avatar }}"></img>
+		<strong class="mr-auto">{{ Auth::user()->username }}</strong>
+        <small class="text-muted">11 mins ago</small>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body ml-1 mb-1">
+		Hello, world! This is a toast message.
+      </div>
+    </div>
+  </div>
+  </div>
 			<li class="nav-item dropdown">
 				<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 					<img class="rounded-circle" width="30px" height="30px" src="/storage/avatars/{{ Auth::user()->avatar }}" /> {{ Auth::user()->username }} <span class="caret"></span>
@@ -56,7 +79,7 @@
 						Profile
 					</a>
                                <a class="dropdown-item" href="/recipes/myrecipes?by={{ auth()->user()->username }}">
-						Recipes
+						My Recipes
 					</a>
 
 					<a class="dropdown-item" href="/settings">

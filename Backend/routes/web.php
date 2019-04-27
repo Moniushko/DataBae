@@ -17,6 +17,7 @@ Route::get('home', 'PagesController@home')->name('home');
 
 Route::get('settings', 'UserController@profile')->name('settings');
 Route::get('user/{id}', 'UserController@userProfile');
+Route::post('user/{id}', 'MessageController@create');
 Route::post('settings', 'UserController@update_profile');
 
 Route::get('/recipes/myrecipes', 'RecipesController@myrecipes')->name('recipes');
