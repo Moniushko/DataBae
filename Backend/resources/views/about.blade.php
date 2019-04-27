@@ -100,7 +100,7 @@
     <!-- Grid column -->
       <div class="col-xl-6 col-lg-12 d-md-flex justify-content-between">
       <div class="avatar mb-md-0 mt-4 mb-4 mx-4">
-        <img src="/img/Generic.jpg" class="rounded z-depth-1 img-fluid"
+        <img src="/img/Greg.jpg" class="rounded z-depth-1 img-fluid"
           alt="Sample avatar">
       </div>
       <div class="mx-4">
