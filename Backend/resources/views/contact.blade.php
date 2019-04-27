@@ -15,16 +15,6 @@
             <li><a href="#"><i class="fab fa-instagram lead px-2"></i></a></li>
           </ul>
 		</div>
-		<div class="col-xs-6 col-lg-4">
-			<div class="border rounded-0 bg-light container my-4">
-				<h2>FAQs</h2>
-				<ul>
-					<li>Why is my pee pee hard?</li>
-					<li>My recipe isn't uploading.</li>
-					<li>I'm getting an error when I log in.</li>
-				</ul>
-			</div>
-		</div>
 	</div>
 </div>
 @endsection
