@@ -16,7 +16,7 @@
     <!-- Grid column -->
     <div class="col-xl-6 col-lg-12 mb-5 d-md-flex justify-content-between">
       <div class="avatar mb-md-0 mb-4 mx-4">
-        <img src="/img/Jeff.jpg" class="rounded z-depth-1" alt="Sample avatar">
+        <img src="/img/Jeff.jpg" class="card-img-top" width="369px" height="247px" alt="Sample avatar">
       </div>
       <div class="mx-4">
 		<h4 class="font-weight-bold mb-3">Jeffery Garcia</h4>
@@ -42,7 +42,7 @@
     <!-- Grid column -->
     <div class="col-xl-6 col-lg-12 mb-5 d-md-flex justify-content-between">
       <div class="avatar mb-md-0 mb-4 mx-4">
-        <img src="/img/Sol.jpg" class="rounded z-depth-1" alt="Sample avatar">
+        <img src="/img/Sol.jpg" class="card-img-top" width="369px" height="247px" alt="Sample avatar">
       </div>
       <div class="mx-4">
 		<h4 class="font-weight-bold mb-3">Sol Crystal</h4>
@@ -74,7 +74,7 @@
     <!-- Grid column -->
     <div class="col-xl-6 col-lg-12 mb-xl-0 mb-5 d-md-flex justify-content-between">
       <div class="avatar mb-md-0 mb-4 mx-4">
-        <img src="/img/Mark.jpg" class="rounded z-depth-1" alt="Sample avatar">
+        <img src="/img/Mark.jpg" class="card-img-top" width="369px" height="247px" alt="Sample avatar">
       </div>
       <div class="mx-4">
         <h4 class="font-weight-bold mb-3">Mark Requiereme</h4>
@@ -100,7 +100,7 @@
     <!-- Grid column -->
       <div class="col-xl-6 col-lg-12 d-md-flex justify-content-between">
       <div class="avatar mb-md-0 mt-4 mb-4 mx-4">
-        <img src="/img/Generic.jpg" class="rounded z-depth-1 img-fluid"
+        <img src="/img/Generic.jpg" class="card-img-top" width="369px" height="247px"
           alt="Sample avatar">
       </div>
       <div class="mx-4">
@@ -131,7 +131,7 @@
 	<!-- Grid column -->
     <div class="col-xl-6 col-lg-12 d-md-flex justify-content-between">
       <div class="avatar mb-md-0 mt-4 mb-4 mx-4">
-        <img src="/img/Nelson.jpg" class="rounded z-depth-1 img-fluid"
+        <img src="/img/Nelson.jpg" class="card-img-top" width="369px" height="247px"
           alt="Sample avatar">
       </div>
       <div class="mx-4">
@@ -158,7 +158,7 @@
 	<!-- Grid column -->
     <div class="col-xl-6 col-lg-12 d-md-flex justify-content-between">
       <div class="avatar mb-md-0 mb-4 mx-4">
-        <img src="/img/Tableman2.jpg" class="rounded z-depth-1 img-fluid"
+        <img src="/img/Tableman2.jpg" class="card-img-top" width="369px" height="247px"
           alt="Sample avatar">
       </div>
       <div class="mx-4">
@@ -190,7 +190,7 @@
 	<!-- Grid column -->
     <div class="col-xl-6 col-lg-12 d-md-flex justify-content-between">
       <div class="avatar mb-md-0 mb-4 mx-4">
-        <img src="/img/Aaron.jpg" class="rounded z-depth-1 img-fluid"
+        <img src="/img/Aaron.jpg" class="card-img-top" width="369px" height="247px"
           alt="Sample avatar">
       </div>
       <div class="mx-4">
