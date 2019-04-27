@@ -3,7 +3,7 @@
 @section('content')
 <div class="border rounded-0 bg-light shadow container my-4">
 	<div class="row my-4">
-		<div class="col-xs-9 col-md-5">
+		<div class="col-xs-9 col-md-8">
 			@if ($message = Session::get('success'))
 
 						<div class="alert alert-success alert-block">
