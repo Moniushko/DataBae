@@ -58,7 +58,7 @@
 			</form>
 		</div>
 	</div>
-			<div class="col-xs-6 col-lg-4">
+			<div class="col-xs-9 col-md-5">
 			<div class="border rounded-0 bg-light container my-4">
 				<h2>FAQs</h2>
 				<ul>
