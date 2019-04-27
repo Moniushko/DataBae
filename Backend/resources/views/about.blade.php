@@ -6,11 +6,9 @@
 <section class="team-section my-5">
 
   <!-- Section heading -->
-  <h2 class="h1-responsive font-weight-bold text-center my-5">Databae Team</h2>
+  <h2 class="h1-responsive font-weight-bold text-center my-5">Team DataBae</h2>
   <!-- Section description -->
-  <p class="grey-text text-center w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur
-    adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas
-    nostrum quisquam eum porro a pariatur veniam.</p>
+  <p class="grey-text text-center w-responsive mx-auto mb-5">The members of team DataBae a group of dedicated students from California State University, Northridge.</p>
 
   <!-- Grid row-->
   <div class="row text-center text-md-left">
