@@ -57,16 +57,6 @@
 				</button>
 			</form>
 		</div>
-			<div class="col-xs-9 col-md-5">
-			<div class="border rounded-0 bg-light container my-4">
-				<h2>FAQs</h2>
-				<ul>
-					<li>Why is my pee pee hard?</li>
-					<li>My recipe isn't uploading.</li>
-					<li>I'm getting an error when I log in.</li>
-				</ul>
-			</div>
-		</div>
 			</div>
 </div>
 @endsection
