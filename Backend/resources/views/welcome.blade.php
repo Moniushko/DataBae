@@ -15,19 +15,19 @@
 			@if ($loop->iteration == 1)
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<a href="{{ $randomrecipe->path() }}"><img class="d-block w-100" src="/storage/recipes/{{ $randomrecipe->picture }}" alt="First slide">
+				<a href="{{ $randomrecipe->path() }}"><img class="d-block w-100" style="object-fit: cover" src="/storage/recipes/{{ $randomrecipe->picture }}" alt="First slide">
 				<div class="carousel-caption d-none d-md-block">
 					<h1>{{ $randomrecipe->title }}</h1>
-					<p>{{ $randomrecipe->description }}</p>
+					<p>{{ str_limit($randomrecipe->description, $limit = 150, $end = '...') }}</p>
 				</div>
 				</a>
 			</div>
 			@else
 			<div class="carousel-item">
-				<a href="{{ $randomrecipe->path() }}"><img class="d-block w-100" src="/storage/recipes/{{ $randomrecipe->picture }}" alt="Second slide">
+				<a href="{{ $randomrecipe->path() }}"><img class="d-block w-100" style="object-fit: cover" src="/storage/recipes/{{ $randomrecipe->picture }}" alt="Second slide">
 				<div class="carousel-caption d-none d-md-block">
 					<h1>{{ $randomrecipe->title }}</h1>
-					<p>{{ $randomrecipe->description }}</p>
+					<p>{{ str_limit($randomrecipe->description, $limit = 150, $end = '...') }}</p>
 				</div>
 				</a>
 			</div>
