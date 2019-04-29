@@ -11,28 +11,28 @@
 			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 		</ol>
+		@foreach ($randomrecipes as $randomrecipe)
+			@if ($loop->iteration == 1)
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img class="d-block w-100" src="img/burg.jpg" alt="First slide">
+				<a href="{{ $randomrecipe->path() }}"><img class="d-block w-100" src="/storage/recipes/{{ $randomrecipe->picture }}" alt="First slide">
 				<div class="carousel-caption d-none d-md-block">
-					<h1>Spicy Bacon Burgers</h1>
-					<p>Something with a little heat!</p>
+					<h1>{{ $randomrecipe->title }}</h1>
+					<p>{{ $randomrecipe->description }}</p>
 				</div>
+				</a>
 			</div>
+			@else
 			<div class="carousel-item">
-				<img class="d-block w-100" src="img/cookies.jpeg" alt="Second slide">
+				<a href="{{ $randomrecipe->path() }}"><img class="d-block w-100" src="/storage/recipes/{{ $randomrecipe->picture }}" alt="Second slide">
 				<div class="carousel-caption d-none d-md-block">
-					<h1>10 Holiday Treats</h1>
-					<p>Sweeten up the holidays with these holiday treats.</p>
+					<h1>{{ $randomrecipe->title }}</h1>
+					<p>{{ $randomrecipe->description }}</p>
 				</div>
+				</a>
 			</div>
-			<div class="carousel-item">
-				<img class="d-block w-100" src="img/chorizo.jpg" alt="Third slide">
-				<div class="carousel-caption d-none d-md-block">
-					<h1>Chorizo Pasta</h1>
-					<p>This is actual shit tbh. Don't make it.</p>
-				</div>
-			</div>
+			@endif
+			@endforeach
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>

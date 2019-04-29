@@ -22,15 +22,28 @@ $recipes = Recipe::oldest()->orderBy('views', 'desc')->disableCache()->get();
 	foreach($recipes as $recipe) {
 	$newrecipes[] = $recipe;
       }
-
+	  
       // Using the new array, sort the rating by descending values by comparing
 usort($newrecipes,function(Recipe $recipe, Recipe $recipe2){
     return $recipe->getRating() < $recipe2->getRating();
 });
-       //repopulate the $recipes variable with the sorted rating recipes as priority
+      //repopulate the $recipes variable with the sorted rating recipes as priority
       $recipes = $newrecipes;
-return view('welcome', compact('recipes'));
-	}
+	
+	// Pick 3 random top recipes
+	$randomkeys = array_rand($recipes, sizeof($recipes));
+	
+	foreach ($randomkeys as $key) {
+		if($key == 3)
+		break;
+    $randomrecipes[] = $recipes[$key];
+}
+	shuffle($randomrecipes);
+	return view('welcome', [
+	'recipes' => $recipes,
+	'randomrecipes' => $randomrecipes,
+	]);
+}
 	
 		public function getSearch(Request $request)
     {
