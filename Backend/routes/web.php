@@ -17,7 +17,7 @@ Route::get('home', 'PagesController@home')->name('home');
 
 Route::get('settings', 'UserController@profile')->name('settings');
 Route::get('user/{id}', 'UserController@userProfile');
-Route::post('user/{id}', 'MessageController@create');
+Route::post('user/{id}', 'MessagesController@store');
 Route::post('settings', 'UserController@update_profile');
 
 Route::get('/recipes/myrecipes', 'RecipesController@myrecipes')->name('recipes');
@@ -39,6 +39,15 @@ Route::get('/contact', 'PagesController@contact');
 Route::get('/about', 'PagesController@about');
 Route::get('/support', 'PagesController@support');
 Route::post('/support', 'PagesController@sendRequest');
+
+// messenger system
+Route::group(['prefix' => 'messages'], function () {
+    Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
+    Route::get('create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
+    Route::post('/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
+    Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
+    Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
+});
 
 // temporary disable email verification for QA
 Auth::routes();//Auth::routes(['verify' => true]);

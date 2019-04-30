@@ -1,3 +1,7 @@
+@php
+if(auth::check())
+$threads = App\Thread::forUserWithNewMessages(Auth::id())->latest('updated_at')->get();
+@endphp
 <nav class="navbar navbar-expand-lg navbar-light bg-light border shadow">
 		<a class="navbar-brand" href="/home">
 			<img src="/img/Databae_Logo-01.png" height="35px">
@@ -52,23 +56,26 @@
          <button type="button" class="btn btn-email waves-effect waves-light">
       <i class="fas fa-envelope"></i>
     </button>
-	<span class="counter">10</span>
+	@include('messenger.unread-count')
         </a>
+		@if($threads->count() > 0)
 		<div class="dropdown-menu">
     <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+		@foreach($threads as $thread)
+		<a href="/messages/{{ $thread->id }}" style="color: inherit; text-decoration: inherit;">
       <div class="toast-header">
-		<img class=" rounded ml-2 mr-2" width="20" height="20" src="/storage/avatars/{{ Auth::user()->avatar }}"></img>
-		<strong class="mr-auto">{{ Auth::user()->username }}</strong>
-        <small class="text-muted">11 mins ago</small>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+		<img class=" rounded ml-2 mr-2" width="20" height="20" src="/storage/avatars/{{ $thread->creator()->avatar }}"></img>
+		<strong class="mr-auto">{{ $thread->creator()->username }}</strong>
+		<small class="text-muted">{{ $thread->updated_at->diffForHumans() }}</small>
       </div>
       <div class="toast-body ml-1 mb-1">
-		Hello, world! This is a toast message.
+		{{ $thread->subject }}
       </div>
+	  </a>
+	  @endforeach
     </div>
   </div>
+  @endif
   </div>
 			<li class="nav-item dropdown">
 				<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -79,6 +86,9 @@
 										 @if (auth()->check())
 										 <a class="dropdown-item" href="/user/{{ auth()->user()->id }}">
 						Profile
+					</a>
+					 <a class="dropdown-item" href="/messages">
+						Messages
 					</a>
                                <a class="dropdown-item" href="/recipes/myrecipes?by={{ auth()->user()->username }}">
 						My Recipes

@@ -67,7 +67,7 @@
     <div class="modal-content">
       <div class="modal-header text-center">
 		<h4 class="modal-title w-100 font-weight-bold">Write to {{ $user->username }}</h4>
-		<input type="hidden" id="userid" name="userid" value="{{ $user->id }}" class="form-control validate">
+		<input type="hidden" id="recipients" name="recipients" value="{{ $user->id }}" class="form-control validate">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
