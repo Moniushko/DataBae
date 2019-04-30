@@ -39,11 +39,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 p-4">
-					<h4><i class="fas fa-list-alt"></i>&nbsp;Categories</h4>
+					<h4><i class="fas fa-list-alt" style="color: red;"></i>&nbsp;Categories</h4>
 					<p>Looking for what to eat for dinner? Breakfast? Lunch? Recipes are categorized making it a lot simplier to find the recipe for you to enjoy and make!</p>
 				</div>
 				<div class="col-md-6 p-4">
-					<h4> <b><i class="fas fa-thumbs-up"></i>&nbsp;Favoriting</b></h4>
+					<h4> <b><i class="fas fa-thumbs-up" style="color:blue;"></i>&nbsp;Favorite System</b></h4>
 					<p>If you enjoyed a recipe that you made or read a recipe that you want to save later and look at? Why don't you favorite that recipe to use for later?</p>
 				</div>
 				<div class="col-md-6 p-4">
@@ -53,6 +53,14 @@
 				<div class="col-md-6 p-4">
 					<h4> <b><i class="fas fa-star checked"></i>&nbsp;Rating System</b></h4>
 					<p>Recipes on this website can be rated out of five stars. It has a unique calculation on determining what recipes stand out!</p>
+				</div>
+				<div class="col-md-6 p-4">
+					<h4> <b><i class="fas fa-users"></i>&nbsp;Support Team</b></h4>
+					<p>If you are having issues with your account or an issue that needs help solving, we have a support ticket system where you can open a ticket for a team member to assist you!</p>
+				</div>
+				<div class="col-md-6 p-4">
+					<h4> <b><i class="fas fa-envelope"></i>&nbsp;Message System</b></h4>
+					<p>If you want to send a private message to a user or send it to multiple users, we have that system!</p>
 				</div>
 			</div>
 		</div>
@@ -77,4 +85,3 @@
 </body>
 
 </html>
-@include('includes.footer')
