@@ -58,7 +58,7 @@
               <div class="col-lg-3 order-2 order-md-1 col-md-4"> <img class="d-block img-fluid" src="/storage/recipes/{{ $recipeweek->picture }}"> </div>
               <div class="flex-column justify-content-center offset-lg-1 align-items-start order-1 order-md-2 col-md-8 d-flex p-3">
                 <h3>{{ $recipeweek->title }}</h3>
-                <p class="mb-3">{{ $recipeweek->description }}</p> <a class="btn btn-primary" href="{{$recipeweek->path() }}">Read Recipe</a>
+                <p class="mb-3">{ str_limit($recipeweek->description, $limit = 150, $end = '...') }}</p> <a class="btn btn-primary" href="{{$recipeweek->path() }}">Read Recipe</a>
               </div>
             </div>
           </div>

@@ -11,6 +11,7 @@
 			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 		</ol>
+		@if($randomrecipes != null)
 		@foreach ($randomrecipes as $randomrecipe)
 			@if ($loop->iteration == 1)
 		<div class="carousel-inner">
@@ -33,6 +34,7 @@
 			</div>
 			@endif
 			@endforeach
+			@endif
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>

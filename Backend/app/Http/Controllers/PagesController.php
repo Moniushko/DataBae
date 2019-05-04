@@ -31,6 +31,7 @@ usort($newrecipes,function(Recipe $recipe, Recipe $recipe2){
       $recipes = $newrecipes;
 	
 	// Pick 3 random top recipes
+	if(sizeof($newrecipes) > 0) { 
 	$randomkeys = array_rand($recipes, sizeof($recipes));
 	
 	foreach ($randomkeys as $key) {
@@ -43,6 +44,9 @@ usort($newrecipes,function(Recipe $recipe, Recipe $recipe2){
 	'recipes' => $recipes,
 	'randomrecipes' => $randomrecipes,
 	]);
+	} else {
+		return view('welcome', compact('recipes'));
+	}
 }
 	
 		public function getSearch(Request $request)
