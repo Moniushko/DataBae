@@ -42,6 +42,9 @@ class RecipesController extends Controller
      */
     public function categoryshow($category)
     {
+		if($category == 'snacks' || $category == 'Snacks')
+		$category = 'Appetizer/Snacks';
+		
 	   $recipes = Recipe::where('category', $category)->paginate(6);
 	   $getrecipesweek = Recipe::where('category', $category)->get();
 	   $banner ="";
@@ -89,7 +92,7 @@ class RecipesController extends Controller
 		   $text2 = "Follow to get the latest dessert recipes, articles and more!";
 		   $background = "/img/bakery-biscuit-cake-40516.jpg";
 	   }
-	   if($category == "snacks") {
+	   if($category == "Appetizer/Snacks") {
 		   $title = "Appetizer/Snacks";
 		   $banner = "/img/close-up-delicious-dinner-1108775.jpg";
 		   $text1 = "Looking for a quick snack? How about some dishes involving chips with cheese and avocado dip? Or looking for an easy snack to make?";
@@ -158,7 +161,7 @@ class RecipesController extends Controller
 		$dessertRecipes = Recipe::where('category', 'Dessert')->get();
 		$dinnerRecipes = Recipe::where('category', 'Dinner')->get();
 		$drinksRecipes = Recipe::where('category', 'Drinks')->get();
-		$snacksRecipes = Recipe::where('category', 'Snacks')->get();
+		$snacksRecipes = Recipe::where('category', 'Appetizer/Snacks')->get();
 		$topBreakfasts = [];
 		$topLunches = [];
 		$topDinners = [];
