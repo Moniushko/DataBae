@@ -49,8 +49,7 @@ Route::group(['prefix' => 'messages'], function () {
     Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
 });
 
-// temporary disable email verification for QA
-Auth::routes();//Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true]);
 
 //Route::get('home', 'HomeController@index')->name('home');
 
