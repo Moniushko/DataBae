@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRepliesTable extends Migration
+class TicketTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateRepliesTable extends Migration
      */
     public function up()
     {
-        Schema::create('replies', function (Blueprint $table) {
+         Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
-			$table->integer('recipe_id');
-            $table->integer('user_id');
-            $table->text('body');
+			$table->string('title');
+			$table->string('category');
+			$table->text('ticketIssue');
+			$table->string('email');
+			$table->unsignedInteger('userid')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateRepliesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('replies');
+        Schema::dropIfExists('tickets');
     }
 }

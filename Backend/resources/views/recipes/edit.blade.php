@@ -9,7 +9,9 @@
           <div class="col-md-12">
             <ul class="breadcrumb">
               <li class="breadcrumb-item"> <a href="/home">Home</a> </li>
-              <li class="breadcrumb-item active">Upload Recipes</li>
+			  <li class="breadcrumb-item"> <a href="/recipes">Recipes</a> </li>
+			  <li class="breadcrumb-item"> <a href="{{ $recipe->path() }}">{{ $recipe->title }}</a> </li>
+              <li class="breadcrumb-item active">Edit</li>
             </ul>
           </div>
         </div>
@@ -40,49 +42,77 @@
 		{{ csrf_field() }}
 		<div class="form group">
 			<label for="inputTitle">Title</label>
-			<input type="Title" name="title" class="form-control mb-4" id="inputTitle">
-			
+			<textarea class="form-control mb-4" name="title" id="inputTitle" rows="3">{{ $recipe->title }}</textarea>
 			<label for="inputTitle">Category</label>
 			<div class="form-row align-items-center mb-4">
 			<div class="col-auto my-1">
 			<select class="custom-select mr-sm-2" name="category" id="category">
-			<option value="">Choose...</option>
+			@if ($recipe->category == "Breakfast")
+			<option value="Breakfast" selected="selected">Breakfast</option>
+			@else
 			<option value="Breakfast">Breakfast</option>
+			@endif
+			
+			@if ($recipe->category == "Lunch")
+			<option value="Lunch" selected="selected">Lunch</option>
+			@else
 			<option value="Lunch">Lunch</option>
+			@endif
+			
+			@if ($recipe->category == "Dinner")
+			<option value="Dinner" selected="selected">Dinner</option>
+			@else
 			<option value="Dinner">Dinner</option>
+			@endif
+			
+			@if ($recipe->category == "Dessert")
+			<option value="Dessert" selected="selected">Dessert</option>
+			@else
 			<option value="Dessert">Dessert</option>
+			@endif
+			
+			@if ($recipe->category == "Appetizer/Snacks")
+			<option value="Appetizer/Snacks" selected="selected">Appetizer/Snacks</option>
+			@else
 			<option value="Appetizer/Snacks">Appetizer/Snacks</option>
+			@endif
+			
+			@if ($recipe->category == "Drinks")
+			<option value="Drinks" selected="selected">Drinks</option>
+			@else
 			<option value="Drinks">Drinks</option>
+			@endif
 			</select>
 			</div>
 		</div>
 			<label for="inputTag">Tags (optional)</label>
-			<input type="Tag" name="tag" class="form-control mb-4" id="inputTag" placeholder="#sweet #healthy etc...">
+			<textarea class="form-control mb-4" name="tag" id="inputTag" rows="3">{{ $recipe->tag }}</textarea>
 			
 			<label for="exampleTextarea">Recipe Description</label>
-			<textarea class="form-control mb-4" name="recipeDescription" id="recipeDescription" rows="3"></textarea>
+			<textarea class="form-control mb-4" name="recipeDescription" id="recipeDescription" rows="3">{{ $recipe->description }}</textarea>
 			
 			<label for="exampleTextarea">Cook Time</label>
-			<input type="cooktimer" name="cookTime" class="form-control mb-4" id="inputCookTime" placeholder="45 minutes, 30 minutes...">
+			<textarea class="form-control mb-4" name="cookTime" id="inputCookTime" rows="3">{{ $recipe->cookTime }}</textarea>
 			
 			<label for="exampleTextarea">Prep Time</label>
-			<input type="preptimer" name="prepTime" class="form-control mb-4" id="inputPrepTime" placeholder="45 minutes, 30 minutes...">
+			<textarea class="form-control mb-4" name="prepTime" id="inputPrepTime" rows="3">{{ $recipe->prepTime }}</textarea>
 			
 			<label for="exampleTextarea">Footnotes (optional)</label>
-			<textarea class="form-control mb-4" name="footnotes" id="recipeFootNotes" rows="3"></textarea>
+			<textarea class="form-control mb-4" name="footnotes" id="recipeFootNotes" rows="3">{{ $recipe->footnotes }}</textarea>
 			
 			<label for="exampleTextarea">Recipe Ingredients</label>
-			<textarea class="form-control mb-4" name="ingredients" id="recipeIngredients" rows="3" placeholder="Put each ingredient on its own each line."></textarea>
+			<textarea class="form-control mb-4" name="ingredients" id="recipeIngredients" rows="3" placeholder="{{ $recipe->ingredients }}">{{ $recipe->ingredients }}</textarea>
 
 			<label for="exampleTextarea">Recipe Steps</label>
-			<textarea class="form-control mb-4" name="recipe_steps" placeholder="Put each step on its own each line." id="recipeSteps" rows="3"></textarea>
+			<textarea class="form-control mb-4" name="recipe_steps" placeholder="{{ $recipe->recipe_steps }}" id="recipeSteps" rows="3">{{ $recipe->recipe_steps }}</textarea>
 
-			<label for="exampleInputFile">Upload Cover image</label>
+			<label for="exampleInputFile">Change Cover image</label>
+			<img class="d-block img-fluid w-50 mb-3" src="/storage/recipes/{{ $recipe->picture }}">
 			@csrf
 			<input type="file" class="form-control-file" name="picture" id="pictureFile" aria-describedby="fileHelp">
 			<small id="fileHelp" class="form-text text-muted mb-4">Please upload a valid image file. Size of image should not be more than 10MB.</small>
 			
-			<label for="exampleInputFile">Upload Gallery Pictures (optional)</label>
+			<label for="exampleInputFile">Add Gallery Pictures (optional)</label>
 			 <div class="input-group control-group increment" >
           <input type="file" name="gallery[]" class="form-control">
           <div class="input-group-btn"> 
@@ -99,10 +129,33 @@
         </div>
 
 			<button type="submit" class="btn btn-primary mt-4 mb-4">
-									Submit
+									Save Changes
 								</button>
 		</div>
 	</form>
+		<div class="row">
+			<label for="exampleInputFile">Remove Gallery Pictures</label>
+    <div class='list-group gallery'>
+
+
+            @if ($recipe->galleryExists())
+                @foreach($galleries as $gallery)
+                <div class='col-sm-4 col-xs-6 col-md-3 col-lg-3'>
+                    <a class="thumbnail fancybox" rel="ligthbox" href="/storage/gallery/{{ $recipe->id }}/{{ $gallery->filename }}">
+						<img class="img-responsive w-50 mb-5" alt="" src="/storage/gallery/{{ $recipe->id }}/{{ $gallery->filename }}" />
+                    </a>
+					 <form action="{{ url('edit/galleries',$gallery->id) }}" method="POST">
+                    <input type="hidden" name="_method" value="delete">
+                    {!! csrf_field() !!}
+                    <button type="submit" class="close-icon btn btn-danger"><i class="fas fa-minus-circle"></i></button>
+                    </form>
+                </div> <!-- col-6 / end -->
+                @endforeach
+            @endif
+
+
+        </div> <!-- list-group / end -->
+    </div> <!-- row / end -->
 	<script type="text/javascript">
 
     $(document).ready(function() {

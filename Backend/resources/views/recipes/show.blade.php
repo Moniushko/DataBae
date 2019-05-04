@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="border rounded-0 bg-light shadow container my-4">
     <div class="py-1">
     <div class="container">
 	<div class="card-body">
@@ -93,9 +94,14 @@
         {{ method_field('DELETE') }}
         {{ csrf_field() }}
         <div class="col-lg-12 col-md-12 col-6 list-unstyled d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-secondary">Delete Recipe</button>
-									</div>
+									<button type="submit" class="btn btn-secondary mr-3">Delete Recipe</button>
 									</form>
+									
+									<form class="" action="{{ $recipe->path() }}/edit" method="GET">
+									<button type="submit" class="btn btn-secondary mr-3">Edit Recipe</button>
+									</form>
+									
+									</div>
 		<script>
 			$(".delete").on("submit", function(){
 			return confirm("Are you sure?");
@@ -198,25 +204,27 @@
       <div class="row">
         <div class="col-md-12">
           <h3 class="pb-2 border-bottom">Comments</h3>
-	<div class="row border-bottom">
+	<div class="row">
             <div class="col-md-6" style="width:800px; margin:0 auto;">
               <div class="row">
                 <div class="col-md-12">
-                  <h5 class="text-center" ><i class="fas fa-heart mx-1"></i>Best Comment</h5>
+                  @if($topReply != null && $topReply->getFavoritesCountAttribute() > 0) <h5 class="text-center" ><i class="fas fa-heart mx-1" style="color: red;"></i>Best Comment</h5> @endif
                 </div>
               </div>
+			  @if($topReply != null && $topReply->getFavoritesCountAttribute() > 0)
               <div class="card mb-4">
-                <div class="card-header d-flex justify-content-between"><a href="#">@username</a><small text="muted">3 days ago</small></div>
+				<div class="card-header d-flex justify-content-between"><a href="/user/{{ $topReply->owner->id }}" style="text-decoration: inherit;z-index: 1;"><img class="rounded-circle" width="34px" height="34px" style="margins: auto; margin-right: 10px;" src="/storage/avatars/{{ $topReply->owner->avatar }}">{{ '@' }}{{ $topReply->owner->username }}</img></a><small text="muted">{{
+				$topReply->updated_at->diffForHumans() }}</small></div>
                 <div class="card-body">
-                  <h4>Amazing! Would make again!</h4>
-                  <p class="text-justify">This food was amazing!</p>
+                  <p class="text-justify">{{ $topReply->body }}</p>
                   <div class="row">
                     <div class="col-md-12 mt-5">
-                      <ul class="social-links col-lg-12 col-md-12 col-6 list-unstyled d-flex justify-content-end"><a class="btn btn-danger mx-2" href="#"><i class="fas fa-heart mx-1"></i>3 Favorites</a></ul>
+                      <ul class="social-links col-lg-12 col-md-12 col-6 list-unstyled d-flex justify-content-end"><a class="btn btn-danger mx-2" href="#"><i class="fas fa-heart mx-1"></i>{{ $topReply->getFavoritesCountAttribute() }} {{ str_plural('Favorite', $topReply->getFavoritesCountAttribute()) }}</a></ul>
                     </div>
                   </div>
                 </div>
               </div>
+			  @endif
             </div>
           </div>
 	 @foreach ($replies as $reply)

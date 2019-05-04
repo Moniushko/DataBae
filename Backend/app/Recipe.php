@@ -2,6 +2,7 @@
 namespace App;
 use App\Filters\RecipeFilters;
 use App\User;
+use App\Reply;
 use App\Gallery;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -89,7 +90,27 @@ class Recipe extends Model
     {
         $this->replies()->create($reply);
     }
+	
+	public function topReply() {
+		$replies = $this->replies()->get();
+		
+		if($replies->isEmpty())
+		return null;
 
+
+		foreach($replies as $reply) {
+			$newreplies[] = $reply;
+		}
+
+      // Using the new array, sort the rating by descending values by comparing
+		usort($newreplies,function(Reply $reply, Reply $reply2){
+			if($reply->getFavoritesCountAttribute() != null && $reply2->getFavoritesCountAttribute() != null)
+		return $reply->getFavoritesCountAttribute() < $reply2->getFavoritesCountAttribute();
+		});
+		
+		return $newreplies[0];
+	}
+	
    /**
      * Apply all relevant recipe filters.
      *

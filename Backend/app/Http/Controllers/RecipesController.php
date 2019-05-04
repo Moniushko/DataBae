@@ -245,7 +245,7 @@ class RecipesController extends Controller
     {	
 	$this->validate($request, [
             'title' => 'required|max:255',
-			'category' => 'required',
+			'category' => 'required|not_in:0',
             'recipeDescription' => 'required',
 			'ingredients' => 'required',
 			'cookTime' => 'required|max:255',
@@ -330,7 +330,8 @@ class RecipesController extends Controller
          return view('recipes.show', [
             'recipe' => $recipe,
             'replies' => $recipe->replies()->paginate(20),
-			'galleries' => $gallery
+			'galleries' => $gallery,
+			'topReply' => $recipe->topReply(),
         ]);
     }
 
@@ -353,9 +354,14 @@ class RecipesController extends Controller
      */
     public function edit(Recipe $recipe)
     {
-        //
+        $this->authorize('update', $recipe);
+		$galleries = Gallery::where('recipe_id', $recipe->id)->disableCache()->get();
+		 return view('recipes.edit', [
+            'recipe' => $recipe,
+			'galleries' => $galleries
+        ]);
     }
-
+	
     /**
      * Update the specified resource in storage.
      *
@@ -365,7 +371,72 @@ class RecipesController extends Controller
      */
     public function update(Request $request, Recipe $recipe)
     {
-        //
+        $this->authorize('update', $recipe);
+		
+		$this->validate($request, [
+            'title' => 'required|max:255',
+			'category' => 'required|not_in:0',
+            'recipeDescription' => 'required',
+			'ingredients' => 'required',
+			'cookTime' => 'required|max:255',
+			'prepTime' => 'required|max:255',
+	    'recipe_steps' => 'required',
+	    'picture' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg|max:10000',
+		 'gallery.*' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg|max:10000'
+        ]);
+		
+		$steps = $request->recipe_steps;
+	$steps = preg_replace("/(\r?\n){2,}/", "\n", $steps);
+	
+	$ingredients = $request->ingredients;
+	$ingredients = preg_replace("/(\r?\n){2,}/", "\n", $ingredients);
+
+	 // Handle Cover File Upload
+        if($request->hasFile('picture')) {
+            // Get filename with extension            
+	 $filenameWithExt = $request->file('picture')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);            
+           // Get just ext
+            $extension = $request->file('picture')->getClientOriginalExtension();
+            //Filename to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;                       
+          // Upload Image
+            $path = $request->file('picture')->    storeAs('recipes', $fileNameToStore);
+        } else {
+            $fileNameToStore = $recipe->picture;
+        }
+		
+		$recipe->update([
+            'user_id' => auth()->id(),
+            'title' => request('title'),
+			'category' => request('category'),
+            'description' => request('recipeDescription'),
+			'ingredients' => $ingredients,
+			'tags' => request('tag'),
+			'footnotes' => request('footnotes'),
+			'cookTime' => request('cookTime'),
+			'prepTime' => request('prepTime'),
+	    'recipe_steps' => $steps,
+	    'picture' => $fileNameToStore
+        ]);
+
+		// Handle Gallery File Uploads
+		if($request->hasfile('gallery')) {
+			foreach($request->file('gallery') as $image) {
+				$form= new Gallery();
+				$name=time().'.'.$image->getClientOriginalName();
+				$image->move(public_path().'/storage/gallery/'.$recipe->id.'/', $name);
+				$data = $name;
+				$form->recipe_id = $recipe->id;
+				$form->filename=$data;
+				$form->save();
+			}	
+	}
+		
+		$recipe->save();
+		
+		return redirect($recipe->path());
     }
 
     /**

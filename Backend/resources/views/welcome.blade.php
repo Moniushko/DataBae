@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<body style="background: url(/img/background-board-chillies-1435895.jpg);margin: 0;background-position: center;background-repeat: no-repeat;background-size: cover;" >
+<!--<body style="background: url(/img/background-board-chillies-1435895.jpg);margin: 0;background-position: center;background-repeat: no-repeat;background-size: cover;" >-->
 <div class="border rounded-0 bg-light shadow container my-4">
 <!-------------------- Image Slideshow -------------------->
 <div class="container mt-4">
@@ -11,28 +11,28 @@
 			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 		</ol>
+		@foreach ($randomrecipes as $randomrecipe)
+			@if ($loop->iteration == 1)
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img class="d-block w-100" src="img/burg.jpg" alt="First slide">
+				<a href="{{ $randomrecipe->path() }}"><img class="d-block w-100" style="object-fit: cover" src="/storage/recipes/{{ $randomrecipe->picture }}" alt="First slide">
 				<div class="carousel-caption d-none d-md-block">
-					<h1>Spicy Bacon Burgers</h1>
-					<p>Something with a little heat!</p>
+					<h1>{{ $randomrecipe->title }}</h1>
+					<p>{{ str_limit($randomrecipe->description, $limit = 150, $end = '...') }}</p>
 				</div>
+				</a>
 			</div>
+			@else
 			<div class="carousel-item">
-				<img class="d-block w-100" src="img/cookies.jpeg" alt="Second slide">
+				<a href="{{ $randomrecipe->path() }}"><img class="d-block w-100" style="object-fit: cover" src="/storage/recipes/{{ $randomrecipe->picture }}" alt="Second slide">
 				<div class="carousel-caption d-none d-md-block">
-					<h1>10 Holiday Treats</h1>
-					<p>Sweeten up the holidays with these holiday treats.</p>
+					<h1>{{ $randomrecipe->title }}</h1>
+					<p>{{ str_limit($randomrecipe->description, $limit = 150, $end = '...') }}</p>
 				</div>
+				</a>
 			</div>
-			<div class="carousel-item">
-				<img class="d-block w-100" src="img/chorizo.jpg" alt="Third slide">
-				<div class="carousel-caption d-none d-md-block">
-					<h1>Chorizo Pasta</h1>
-					<p>This is actual shit tbh. Don't make it.</p>
-				</div>
-			</div>
+			@endif
+			@endforeach
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -58,7 +58,7 @@
 				@if($recipe->hasRatings())<p class="card-text">@for($i=0; $i < round($recipe->getRating()); $i++) <span class="fa fa-star checked"></span>@endfor @for($i2 = 0; $i2< 5-round($recipe->getRating()); $i2++) <span class="fa fa-star"></span>@endfor</p>
 				@else <p class="card-text"><small class="text-muted">It has yet to be rated!</small></p>
 				@endif
-				<p class="card-text">{{ str_limit($recipe->body, $limit = 150, $end = '...') }}</p>
+				<p class="card-text">{{ str_limit($recipe->description, $limit = 150, $end = '...') }}</p>
 				<p class="card-text"><small class="text-muted">{{ number_format($recipe->views) }} {{ str_plural('view', number_format($recipe->views)) }} {{ number_format($recipe->replies_count) }} {{ str_plural('comment', number_format($recipe->replies_count)) }}</small></p>
 				<p class="card-text"><small class="text-muted">Last updated {{ $recipe->updated_at->diffForHumans() }}</small></p>
 			</div>

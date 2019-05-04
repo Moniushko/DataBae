@@ -25,4 +25,4 @@
 <link href="/css/search.css" rel="stylesheet">
 
 <!-- Favicon -->
-<link rel="shortcut icon" href="/img/favicon2.ico" />
+<link rel="shortcut icon" href="/img/favicon3.ico" />
